@@ -2,7 +2,7 @@ var array = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 console.log(array);
 
 function pushFront(arr, val) {
-	for (var i = arr.length; i <= 0; i--) {
+	for (var i = arr.length; i >= 0; i--) {
 		arr[i] = arr[i - 1];
 	}
 	arr[0] = val;
