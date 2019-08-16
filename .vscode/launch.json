@@ -8,7 +8,7 @@
 			"type": "node",
 			"request": "launch",
 			"name": "Launch Program",
-			"program": "${workspaceFolder}/StringsAssociativeArrays/string1/toDo1.js"
+			"program": "${workspaceFolder}/StringsAssociativeArrays/string1/toDo3.js"
 		}
 	]
 }
