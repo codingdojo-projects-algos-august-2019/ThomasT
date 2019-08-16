@@ -57,3 +57,27 @@ def addEquipment():
     db.session.add(newEquip)
     db.session.commit()
     return redirect('/')
+
+
+def checkout():
+    return render_template('/checkout.html')
+
+
+def equipments():
+    return render_template('/equipments.html')
+
+
+def equipmentDetails():
+    return render_template('/equipmentDetails.html')
+
+
+def users():
+    return render_template('/users.html')
+
+
+def userDetails():
+    return render_template('/userDetails.html')
+
+
+def transaction():
+    return render_template('/transactionDetail.html')
