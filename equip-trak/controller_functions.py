@@ -1,6 +1,6 @@
 from flask import Flask, render_template, redirect, request
 from config import db
-from models import User, Equipment, Status, Admin
+from models import User, Equipment, Status, Admin, Condition, Transaction
 
 
 def root():
@@ -60,7 +60,13 @@ def addEquipment():
 
 
 def checkout():
-    return render_template('/checkout.html')
+    equip = Equipment.query.all()
+    con = Condition.query.all()
+    print("*"*50)
+    print('equip', equip)
+    print('conditions', con)
+    print("*"*50)
+    return render_template('/checkout.html', equip=equip, conditions=con)
 
 
 def equipments():
