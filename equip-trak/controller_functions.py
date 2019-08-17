@@ -59,7 +59,7 @@ def addEquipment():
     return redirect('/')
 
 
-def checkout():
+def checkoutPage():
     equip = Equipment.query.all()
     con = Condition.query.all()
     print("*"*50)
@@ -70,7 +70,8 @@ def checkout():
 
 
 def equipments():
-    return render_template('/equipments.html')
+    equip = Equipment.query.all()
+    return render_template('/equipments.html', equip=equip)
 
 
 def equipmentDetails():

@@ -1,9 +1,9 @@
 from config import app
-from controller_functions import root, checkout, register, addUser, checkUser, nav, newEquip, addEquipment, equipments, equipmentDetails, users, userDetails, transaction
+from controller_functions import root, checkoutPage, register, addUser, checkUser, nav, newEquip, addEquipment, equipments, equipmentDetails, users, userDetails, transaction
 
 app.add_url_rule("/", view_func=root)
 app.add_url_rule('/nav', view_func=nav)
-app.add_url_rule('/checkout', view_func=checkout)
+app.add_url_rule('/checkout', view_func=checkoutPage)
 
 app.add_url_rule("/addUser", view_func=addUser, methods=['POST'])
 app.add_url_rule('/register', view_func=register)

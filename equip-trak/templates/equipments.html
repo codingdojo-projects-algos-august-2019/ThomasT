@@ -22,6 +22,28 @@
 			<nav class="navbar navbar-inverse"></nav>
 			<main>
 				<h1>Equipment List</h1>
+				<table class="table table-striped table-hover">
+					<thead>
+						<tr>
+							<th scope="col">ID</th>
+							<th scope="col">Equipment ID</th>
+							<th scope="col">Manufacture / Model</th>
+							<th scope="col">Serial Number</th>
+							<th scope="col">Last Used By</th>
+							<th scope="col">Last Time Used</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for item in equip %}
+						<tr>
+							<td scope="row">{{ item.id }}</td>
+							<td>{{ item.equip_id }}</td>
+							<td>{{ item.manufacture }} - {{ item.model }}</td>
+							<td>{{ item.serial }}</td>
+						</tr>
+						{% endfor %}
+					</tbody>
+				</table>
 			</main>
 		</div>
 	</body>
