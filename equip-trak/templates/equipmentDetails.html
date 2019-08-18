@@ -22,6 +22,90 @@
 			<nav class="navbar navbar-inverse"></nav>
 			<main>
 				<h1>Equipment Details</h1>
+				<div class="container">
+					<fieldset disabled="disabled">
+						<div class="form-group">
+							<label for="equipId">Equipment ID</label>
+							<input
+								type="text"
+								name="equipId"
+								id="equipId"
+								class="form-control-lg col-sm-12"
+								value="{{ equip.equip_id }}"
+							/>
+						</div>
+						<div class="form-group">
+							<label for="manuModel">Manufacture - Model</label>
+							<input
+								type="text"
+								name="manuModel"
+								id="manuModel"
+								class="form-control-lg col-sm-12"
+								value="{{ equip.manufacture }} - {{ equip.model }}"
+							/>
+						</div>
+						<div class="form-group">
+							<label for="serial">Serial</label>
+							<input
+								type="text"
+								name="serial"
+								id="serial"
+								class="form-control-lg col-sm-12"
+								value="{{ equip.serial }}"
+							/>
+						</div>
+						<div class="form-group">
+							<label for="inOutStatus">Checkout Status</label>
+							<input
+								type="text"
+								name="inOutStatus"
+								id="inOutStatus"
+								class="form-control-lg col-sm-12"
+								value="Checkout / Checkin"
+							/>
+						</div>
+						<div class="form-group">
+							<label for="equipStatus">Equipment Status</label>
+							<input
+								type="text"
+								name="equipStatus"
+								id="equipStatus"
+								class="form-control-lg col-sm-12"
+								value="Excellent/Good/Fair/Need Repair"
+							/>
+						</div>
+						<div class="form-group">
+							<label for="lastUsedBy">Last Used By</label>
+							<input
+								type="text"
+								name="lastUsedBy"
+								id="lastUsedBy"
+								class="form-control-lg col-sm-12"
+								value="Last used by"
+							/>
+						</div>
+						<div class="form-group">
+							<label for="lastUsedDate">Last Used Date</label>
+							<input
+								type="text"
+								name="lastUsedDate"
+								id="lastUsedDate"
+								class="form-control-lg col-sm-12"
+								value="Last used date"
+							/>
+						</div>
+						<div class="form-group">
+							<label for="action">Actions</label>
+							<input
+								type="text"
+								name="action"
+								id="action"
+								class="form-control-lg col-sm-12"
+								value="Active/Unactivte"
+							/>
+						</div>
+					</fieldset>
+				</div>
 			</main>
 		</div>
 	</body>

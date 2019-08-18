@@ -4,7 +4,6 @@ from models import User, Equipment, Status, Admin, Condition, Transaction
 
 
 def root():
-    # dojoList = Dojo.query.all()
     return render_template('index.html')
 
 
@@ -13,15 +12,12 @@ def register():
 
 
 def addUser():
-    print('request', request.form)
     newUser = User(
         first_name=request.form['firstName'],
         last_name=request.form['lastName'],
         email=request.form['email'],
         user_name=request.form['userName'],
         password=request.form['pw1'])
-
-    print(newUser)
     db.session.add(newUser)
     db.session.commit()
     return redirect('/')
@@ -62,10 +58,6 @@ def addEquipment():
 def checkoutPage():
     equip = Equipment.query.all()
     con = Condition.query.all()
-    print("*"*50)
-    print('equip', equip)
-    print('conditions', con)
-    print("*"*50)
     return render_template('/checkout.html', equip=equip, conditions=con)
 
 

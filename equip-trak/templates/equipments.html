@@ -35,7 +35,7 @@
 					</thead>
 					<tbody>
 						{% for item in equip %}
-						<tr>
+						<tr onclick="window.location='/equipments/{{ item.id }}';">
 							<td scope="row">{{ item.id }}</td>
 							<td>{{ item.equip_id }}</td>
 							<td>{{ item.manufacture }} - {{ item.model }}</td>
