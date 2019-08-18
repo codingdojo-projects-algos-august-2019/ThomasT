@@ -35,7 +35,7 @@
 					</thead>
 					<tbody>
 						{% for user in users %}
-						<tr>
+						<tr onclick="window.location='/users/{{ user.id }}';">
 							<td scope="row">{{ user.id }}</td>
 							<td>{{ user.user_name }}</td>
 							<td>{{ user.first_name }} {{ user.last_name }}</td>
