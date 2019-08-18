@@ -22,6 +22,31 @@
 			<nav class="navbar navbar-inverse"></nav>
 			<main>
 				<h1>User List</h1>
+				<table class="table table-striped table-hover">
+					<thead>
+						<tr>
+							<th scope="col">ID</th>
+							<th scope="col">User Name</th>
+							<th scope="col">Name</th>
+							<th scope="col">Email</th>
+							<th scope="col">User Status</th>
+							<th scope="col">Action</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for user in users %}
+						<tr>
+							<td scope="row">{{ user.id }}</td>
+							<td>{{ user.user_name }}</td>
+							<td>{{ user.first_name }} {{ user.last_name }}</td>
+							<td>{{ user.email }}</td>
+							<td>Active/Unactive</td>
+							<td>Activate/Deactivate</td>
+						</tr>
+
+						{% endfor %}
+					</tbody>
+				</table>
 			</main>
 		</div>
 	</body>

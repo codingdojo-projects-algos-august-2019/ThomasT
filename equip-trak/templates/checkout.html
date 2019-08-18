@@ -22,6 +22,54 @@
 			<nav class="navbar navbar-inverse"></nav>
 			<main>
 				<h1>Check Out</h1>
+				<form action="/checkout" method="post">
+					<div class="form-group">
+						<label for="equipment">Equipment ID</label>
+						<input
+							type="text"
+							list="equipId"
+							name="equipId"
+							value=""
+							class="form-control custom-select custom-select-sm"
+						/>
+						<datalist id="equipId" class="custom-select custom-select-sm">
+							{% for item in equip %}
+							<option value="{{ item.equip_id }}"></option>
+							{% endfor %}
+						</datalist>
+					</div>
+					<label id="status" for="statusID"
+						>Status: <span id="StatusId" name="statusID"></span
+					></label>
+					<div class="form-group">
+						<label for="conditions">Condtion</label>
+						<input
+							type="text"
+							list="conditions"
+							name="conditions"
+							value=""
+							class="form-control col-sm-6 custom-select custom-select-sm"
+						/>
+						<datalist id="conditions" class="custom-select custom-select-sm">
+							{% for item in conditions %}
+							<option value="{{ item.id }}-{{ item.condition }}"></option>
+							{% endfor %}
+						</datalist>
+					</div>
+					<div class="form-group">
+						<label for="comments">Comments</label>
+						<textarea
+							name="comments"
+							id="comments"
+							cols="30"
+							rows="10"
+							class="form-control"
+						></textarea>
+					</div>
+					<div class="form-group">
+						<input type="submit" value="Check Out" class="btn btn-primary" />
+					</div>
+				</form>
 			</main>
 		</div>
 	</body>

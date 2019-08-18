@@ -1,6 +1,6 @@
 from flask import Flask, render_template, redirect, request
 from config import db
-from models import User, Equipment, Status, Admin
+from models import User, Equipment, Status, Admin, Condition, Transaction
 
 
 def root():
@@ -57,3 +57,37 @@ def addEquipment():
     db.session.add(newEquip)
     db.session.commit()
     return redirect('/')
+
+
+def checkoutPage():
+    equip = Equipment.query.all()
+    con = Condition.query.all()
+    print("*"*50)
+    print('equip', equip)
+    print('conditions', con)
+    print("*"*50)
+    return render_template('/checkout.html', equip=equip, conditions=con)
+
+
+def equipments():
+    equip = Equipment.query.all()
+    return render_template('/equipments.html', equip=equip)
+
+
+def equipmentDetails(myId):
+    equip = Equipment.query.get(myId)
+    return render_template('/equipmentDetails.html', equip=equip)
+
+
+def users():
+    users = User.query.all()
+    return render_template('/users.html', users=users)
+
+
+def userDetails(userId):
+    user = User.query.get(userId)
+    return render_template('/userDetails.html', user=user)
+
+
+def transaction():
+    return render_template('/transactionDetail.html')
