@@ -9,11 +9,11 @@ app.add_url_rule("/addUser", view_func=addUser, methods=['POST'])
 app.add_url_rule('/register', view_func=register)
 app.add_url_rule('/username', view_func=checkUser, methods=['POST'])
 app.add_url_rule('/users', view_func=users)
-app.add_url_rule('/usersDetail', view_func=userDetails)
+app.add_url_rule('/users/<userId>', view_func=userDetails)
 
 
 app.add_url_rule('/equipments', view_func=equipments)
-app.add_url_rule('/equipmentDetail', view_func=equipmentDetails)
+app.add_url_rule('/equipments/<myId>', view_func=equipmentDetails)
 app.add_url_rule('/newEquipment', view_func=newEquip)
 app.add_url_rule('/addEquipment', view_func=addEquipment, methods=['POST'])
 

@@ -74,16 +74,19 @@ def equipments():
     return render_template('/equipments.html', equip=equip)
 
 
-def equipmentDetails():
-    return render_template('/equipmentDetails.html')
+def equipmentDetails(myId):
+    equip = Equipment.query.get(myId)
+    return render_template('/equipmentDetails.html', equip=equip)
 
 
 def users():
-    return render_template('/users.html')
+    users = User.query.all()
+    return render_template('/users.html', users=users)
 
 
-def userDetails():
-    return render_template('/userDetails.html')
+def userDetails(userId):
+    user = User.query.get(userId)
+    return render_template('/userDetails.html', user=user)
 
 
 def transaction():
