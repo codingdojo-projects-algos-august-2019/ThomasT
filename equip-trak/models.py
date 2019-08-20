@@ -69,6 +69,6 @@ class Status(db.Model):
     __tablename__ = "status"
     id = db.Column(db.Integer, primary_key=True)
     status = db.Column(db.String(45))
-    created_on = db.Column(db.DateTime, server_default=func.now())
+    created_on = db.Column(db.DateTime, servetr_default=func.now())
     updated_on = db.Column(
         db.DateTime, server_default=func.now(), onupdate=func.now())
