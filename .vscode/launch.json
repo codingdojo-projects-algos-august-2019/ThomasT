@@ -8,7 +8,13 @@
 			"type": "node",
 			"request": "launch",
 			"name": "Launch Program",
-			"program": "${workspaceFolder}/StringsAssociativeArrays/string1/toDo3.js"
+			"program": "${workspaceFolder}/codeChallenge.js"
 		}
+		// {
+		// 	"type": "node",
+		// 	"request": "launch",
+		// 	"name": "Launch Program",
+		// 	"program": "${workspaceFolder}/StringsAssociativeArrays/string1/toDo3.js"
+		// }
 	]
 }
