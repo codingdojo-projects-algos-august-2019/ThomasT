@@ -20,4 +20,15 @@ $(document).ready(function() {
 	}
 
 	navBar();
+	$('#checkEquip #equipId').keyup(function() {
+		var data = $('#checkEquip').serialize();
+		$.ajax({
+			method: 'POST',
+			url: '/getEquip',
+			data: data
+		}).done(function(res) {
+			console.log(res);
+			$('#checkoutForm').html(res);
+		});
+	});
 });

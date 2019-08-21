@@ -10,6 +10,7 @@ class User(db.Model):
     email = db.Column(db.String(45))
     user_name = db.Column(db.String(255), unique=True)
     password = db.Column(db.String(45))
+    # history = db.relationship('transactions', backref='users', lazy=True)
     created_at = db.Column(db.DateTime, server_default=func.now())
     updated_at = db.Column(
         db.DateTime, server_default=func.now(), onupdate=func.now())
@@ -22,6 +23,7 @@ class Equipment(db.Model):
     manufacture = db.Column(db.String(45))
     model = db.Column(db.String(45))
     serial = db.Column(db.String(45))
+    # history = db.relationship('transactions', backref='equipments', lazy=True)
     created_on = db.Column(db.DateTime, server_default=func.now())
     updated_on = db.Column(
         db.DateTime, server_default=func.now(), onupdate=func.now())
@@ -67,6 +69,6 @@ class Status(db.Model):
     __tablename__ = "status"
     id = db.Column(db.Integer, primary_key=True)
     status = db.Column(db.String(45))
-    created_on = db.Column(db.DateTime, server_default=func.now())
+    created_on = db.Column(db.DateTime, servetr_default=func.now())
     updated_on = db.Column(
         db.DateTime, server_default=func.now(), onupdate=func.now())

@@ -1,0 +1,7 @@
+id,equip_id,model,manufacturer,serial,created_on,updated_on,status_id
+1,iPhone01,"iPhone Xs Max",Apple,ABC123451,"2019-08-20 00:15:05","2019-08-20 00:15:05",1
+2,iPhone02,"iPhone 7",Apple,ABC123452,"2019-08-20 00:15:05","2019-08-20 00:15:05",1
+3,iPadMini01,"iPad Mini 4",Apple,ABC123453,"2019-08-20 00:15:05","2019-08-20 00:15:05",1
+4,iPad401,"iPad 4",Apple,ABC123454,"2019-08-20 00:15:05","2019-08-20 00:15:05",1
+5,Macbook01,"Macbook Pro 15" 2018",Apple,ABC123455,"2019-08-20 00:15:05","2019-08-20 00:15:05",1
+6,Macbook02,"Macbook Pro 13" 2017",Apple,ABC123456,"2019-08-20 00:15:05","2019-08-20 00:15:05",NULL

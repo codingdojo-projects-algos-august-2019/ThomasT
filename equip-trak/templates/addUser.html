@@ -20,10 +20,20 @@
 	</head>
 	<body>
 		<div class="container">
-			<nav class="navbar navbar-inverse">
-			</nav>
+			<nav class="navbar navbar-inverse"></nav>
 			<main>
 				<h1 class="m-3">Create User</h1>
+				<div class="errMsg">
+					<!-- declare a variable called messages -->
+					{% with messages = get_flashed_messages() %}
+					<!-- check if there are any messages -->
+					{% if messages %}
+					<!-- loop through the messages -->
+					{% for message in messages %}
+					<!-- display each message in a paragraph tag -->
+					<p>{{ message }}</p>
+					{% endfor %} {% endif %} {% endwith %}
+				</div>
 				<form action="addUser" method="post" id="regForm">
 					<div class="form-group row">
 						<label for="firstName" class="col-sm-2 col-form-label"
