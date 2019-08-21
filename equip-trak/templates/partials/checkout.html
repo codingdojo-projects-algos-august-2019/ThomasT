@@ -1,0 +1,84 @@
+{% if equip['status'] == "In" %}
+<form action="/equipOut" method="POST">
+	<input type="hidden" name="equipId" value="{{ equip.id }}" />
+	<input
+		type="hidden"
+		name="userId"
+		id="userId"
+		value="{{ session['userId'] }}"
+	/>
+	<label id="status" for="statusID"
+		>Status:
+		<span id="StatusId" name="statusID">{{ equip.status }}</span></label
+	>
+	<div class="form-group">
+		<label for="conditions">Condtion</label>
+		<select name="conditions" id="conidtions">
+			<option selected disabled></option>
+			<option value="1">Excellent</option>
+			<option value="2">Good</option>
+			<option value="3">Fair</option>
+			<option value="4">Need Repair</option>
+		</select>
+	</div>
+	<div class="form-group">
+		<label for="comments">Comments</label>
+		<textarea
+			name="comments"
+			id="comments"
+			cols="30"
+			rows="10"
+			class="form-control"
+		></textarea>
+	</div>
+	<div class="form-group">
+		<input type="submit" value="Check Out" class="btn btn-primary" />
+	</div>
+</form>
+
+{% else %}
+<form action="/equipIn" method="POST">
+	<input type="hidden" name="equipId" value="{{ equip.id }}" />
+	<input type="hidden" name="trans_id" value="{{ trans.id }}" />
+	<input
+		type="hidden"
+		name="userId"
+		id="userId"
+		value="{{ session['userId'] }}"
+	/>
+	<div class="form-group">
+		<label id="status" for="statusID">Status:</label>
+		<span id="StatusId" name="statusID">{{ equip.status }}</span>
+	</div>
+	<div class="form-group">
+		<label for="outBy">Checked Out By:</label>
+		<span id="outBy" name="outBy"
+			>{{ trans.first_name }} {{ trans['last_name'] }}</span
+		>
+	</div>
+	<div class="form-group">
+		<label for="conditions">Condtion</label>
+		<select name="conditions" id="conidtions">
+			<option disabled selected></option>
+			<option value="1">Excellent</option>
+			<option value="2">Good</option>
+			<option value="3">Fair</option>
+			<option value="4">Need Repair</option>
+		</select>
+	</div>
+	<div class="form-group">
+		<label for="comments">Comments</label>
+		<textarea
+			name="comments"
+			id="comments"
+			cols="30"
+			rows="10"
+			class="form-control"
+		></textarea>
+	</div>
+	<div class="form-group">
+		<input type="submit" value="Check In" class="btn btn-primary" />
+	</div>
+</form>
+
+{% endif %}

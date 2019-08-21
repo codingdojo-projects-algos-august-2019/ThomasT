@@ -121,8 +121,6 @@ def checkUser():
     query = 'select * from users WHERE user_name = %(un)s'
     data = {'un': request.form['user_name']}
     result = mySql.query_db(query, data)
-    print('results', result)
-    print("*"*50)
     if result:
         found = True
     return render_template('partials/username.html', found=found)
@@ -148,7 +146,7 @@ def addEquipment():
 
 def checkoutPage():
     mySql = MySQLConnection('equip-trak')
-    query = 'select * from equipments'
+    query = 'select * from equipments ORDER BY equip_id'
     equip = mySql.query_db(query)
     mySql = MySQLConnection('equip-trak')
     query = 'select * from conditions'
@@ -158,7 +156,8 @@ def checkoutPage():
 
 def equipments():
     mySql = MySQLConnection('equip-trak')
-    query = 'select * from equipments'
+    # query = 'select * from equipments'
+    query = 'select equipments.id as ID, equipments.equip_id as 'Equipment ID', manufacturer, model, serial, first_name, last_Name, transactions.checkout_time from equipments LEFT JOIN (select equip_id, max(transactions.id) as last_trans from equipments left join transactions on equipments.id = equipments_id Group BY equip_id) as lastTrans ON equipments.equip_id = lastTrans.equip_id LEFT JOIN transactions ON transactions.id = lastTrans.last_trans LEFT JOIN users on users.id = transactions.checkout_user_id'
     myEquip = mySql.query_db(query)
     return render_template('/equipments.html', equip=myEquip)
 
@@ -169,6 +168,27 @@ def equipmentDetails(myId):
     data = {'id': myId}
     equip = mySql.query_db(query, data)
     return render_template('/equipmentDetails.html', equip=equip)
+
+
+def getEquip():
+    print(request.form)
+    mySql = MySQLConnection('equip-trak')
+    query = 'select * from equipments left join status on status_id = status.id  WHERE equip_id	= %(eId)s'
+    data = {'eId': request.form['equipId']}
+    results = mySql.query_db(query, data)
+    results = results[0]
+    print(results)
+    if results['status.id'] == 1:
+        mySql = MySQLConnection('equip-trak')
+        query = 'select * from transactions LEFT JOIN users ON users.id = checkout_user_id WHERE equipments_id= %(eId)s and isnull(checkin_user_id)'
+        data = {'eId': results['id']}
+        trans = mySql.query_db(query, data)
+        trans = trans[0]
+    else:
+        trans = ''
+        print('trans empty', trans)
+
+    return render_template('partials/checkout.html', equip=results, trans=trans)
 
 
 def users():
@@ -188,3 +208,33 @@ def userDetails(userId):
 
 def transaction():
     return render_template('/transactionDetail.html')
+
+
+def equipOut():
+    print(request.form)
+    mySql = MySQLConnection('equip-trak')
+    query = 'INSERT INTO transactions (equipments_id, checkout_user_id, checkout_condition_id, checkout_comment, checkout_time, created_on, updated_on) VALUES (%(eId)s, %(uId)s, %(con)s, %(com)s, now(), now(), now())'
+    # %(eId)s, %(uId)s, %(con)s, %(com)s
+    data = {'eId': request.form['equipId'], 'uId': request.form['userId'],
+            'con': request.form['conditions'], 'com': request.form['comments']}
+    mySql.query_db(query, data)
+    print("*"*60)
+    mySql = MySQLConnection('equip-trak')
+    query = 'UPDATE equipments SET status_id = 1 WHERE id = %(eId)s'
+    # data = {'eId': request.form['equipId']}
+    mySql.query_db(query, data)
+    return redirect('/checkout')
+
+
+def equipIn():
+    mySql = MySQLConnection('equip-trak')
+    query = 'UPDATE transactions SET checkin_user_id = %(uId)s, checkin_condition_id = %(con)s, checkin_comment = %(com)s, checkin_time=now(), updated_on=now() WHERE id = %(tId)s'
+    data = {'eId': request.form['equipId'], 'uId': request.form['userId'],
+            'con': request.form['conditions'], 'com': request.form['comments'], 'tId': request.form['trans_id']}
+    mySql.query_db(query, data)
+    print("*"*60)
+    mySql = MySQLConnection('equip-trak')
+    query = 'UPDATE equipments SET status_id = 2 WHERE id = %(eId)s'
+    # data = {'eId': request.form['equipId']}
+    mySql.query_db(query, data)
+    return redirect('/checkout')
