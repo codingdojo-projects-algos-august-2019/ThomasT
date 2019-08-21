@@ -157,7 +157,8 @@ def checkoutPage():
 def equipments():
     mySql = MySQLConnection('equip-trak')
     # query = 'select * from equipments'
-    query = 'select equipments.id as ID, equipments.equip_id as 'Equipment ID', manufacturer, model, serial, first_name, last_Name, transactions.checkout_time from equipments LEFT JOIN (select equip_id, max(transactions.id) as last_trans from equipments left join transactions on equipments.id = equipments_id Group BY equip_id) as lastTrans ON equipments.equip_id = lastTrans.equip_id LEFT JOIN transactions ON transactions.id = lastTrans.last_trans LEFT JOIN users on users.id = transactions.checkout_user_id'
+    query = 'select equipments.id as ID, equipments.equip_id as "Equipment ID", manufacturer, model, serial, first_name, last_Name, transactions.checkout_time from equipments LEFT JOIN (select equip_id, max(transactions.id) as last_trans FROM equipments LEFT JOIN transactions on equipments.id = equipments_id GROUP BY equip_id) as lastTrans ON equipments.equip_id = lastTrans.equip_id LEFT JOIN transactions ON transactions.id = lastTrans.last_trans LEFT JOIN users on users.id = transactions.checkout_user_id'
+
     myEquip = mySql.query_db(query)
     return render_template('/equipments.html', equip=myEquip)
 
