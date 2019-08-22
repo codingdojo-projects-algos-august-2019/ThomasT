@@ -152,17 +152,20 @@ def checkoutPage():
 
 def equipments():
     mySql = MySQLConnection('equip-trak')
-    query = 'select equipments.id as ID, equipments.equip_id as "Equipment ID", manufacturer, model, serial, first_name, last_Name, transactions.checkout_time from equipments LEFT JOIN (select equip_id, max(transactions.id) as last_trans FROM equipments LEFT JOIN transactions on equipments.id = equipments_id GROUP BY equip_id) as lastTrans ON equipments.equip_id = lastTrans.equip_id LEFT JOIN transactions ON transactions.id = lastTrans.last_trans LEFT JOIN users on users.id = transactions.checkout_user_id'
+    query = 'select equipments.id as ID, equipments.equip_id as "Equipment ID", manufacturer, model, serial, first_name, last_Name, status, transactions.checkout_time as lastCheckoutTime from equipments LEFT JOIN (select equip_id, max(transactions.id) as last_trans FROM equipments LEFT JOIN transactions on equipments.id = equipments_id GROUP BY equip_id) as lastTrans ON equipments.equip_id = lastTrans.equip_id LEFT JOIN transactions ON transactions.id = lastTrans.last_trans LEFT JOIN users on users.id = transactions.checkout_user_id LEFT JOIN status ON status.id = status_id'
     myEquip = mySql.query_db(query)
     return render_template('/equipments.html', equip=myEquip)
 
 
 def equipmentDetails(myId):
     mySql = MySQLConnection('equip-trak')
-    query = 'select * from equipments WHERE id = %(id)s'
+    query = 'select equipments.id as ID, equipments.equip_id as "Equipment ID", manufacturer, model, serial, first_name, last_Name, status, transactions.checkout_time as lastCheckoutTime from equipments LEFT JOIN (select equip_id, max(transactions.id) as last_trans FROM equipments LEFT JOIN transactions on equipments.id = equipments_id GROUP BY equip_id) as lastTrans ON equipments.equip_id = lastTrans.equip_id LEFT JOIN transactions ON transactions.id = lastTrans.last_trans LEFT JOIN users on users.id = transactions.checkout_user_id LEFT JOIN status ON status.id = status_id WHERE equipments.id = %(id)s'
     data = {'id': myId}
     equip = mySql.query_db(query, data)
-    return render_template('/equipmentDetails.html', equip=equip)
+    mySql = MySQLConnection('equip-trak')
+    query = 'select equip_id, users.first_name, users.last_name, checkout_time, con_out.condition as condition_out, inUser.first_name as inFirstName, inUser.last_name as inLastName, checkin_time, con_in.condition as condition_in from transactions LEFT JOIN equipments ON equipments_id = equipments.id LEFT JOIN users ON users.id = checkout_user_id LEFT JOIN conditions as con_out ON checkout_condition_id=con_out.id LEFT JOIN conditions as con_in ON checkin_condition_id=con_in.id LEFT JOIN users as inUser ON inUser.id = checkin_user_id where equipments_id=%(id)s'
+    trans = mySql.query_db(query, data)
+    return render_template('/equipmentDetails.html', equip=equip[0], trans=trans)
 
 
 def getEquip():
@@ -198,7 +201,13 @@ def userDetails(userId):
     query = 'select * from users WHERE id = %(id)s'
     data = {'id': userId}
     user = mySql.query_db(query, data)
-    return render_template('/userDetails.html', user=user)
+    mySql = MySQLConnection('equip-trak')
+    query = 'SELECT transactions.id, equipments_id, equip_id, manufacturer, model, checkout_time, checkin_time from transactions LEFT JOIN users ON checkout_user_id = users.id LEFT JOIN equipments ON equipments_id = equipments.id LEFT JOIN status ON status.id = equipments.status_id WHERE checkout_user_id = %(id)s ORDER BY transactions.id desc'
+    trans = mySql.query_db(query, data)
+    print("*"*60)
+    print(trans)
+    print("*"*60)
+    return render_template('/userDetails.html', user=user[0], trans=trans)
 
 
 def transaction():

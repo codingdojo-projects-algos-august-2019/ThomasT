@@ -31,7 +31,7 @@
 								name="equipId"
 								id="equipId"
 								class="form-control-lg col-sm-12"
-								value="{{ equip.equip_id }}"
+								value="{{ equip['Equipment ID'] }}"
 							/>
 						</div>
 						<div class="form-group">
@@ -41,7 +41,7 @@
 								name="manuModel"
 								id="manuModel"
 								class="form-control-lg col-sm-12"
-								value="{{ equip.manufacture }} - {{ equip.model }}"
+								value="{{ equip.manufacturer }} - {{ equip.model }}"
 							/>
 						</div>
 						<div class="form-group">
@@ -61,10 +61,10 @@
 								name="inOutStatus"
 								id="inOutStatus"
 								class="form-control-lg col-sm-12"
-								value="Checkout / Checkin"
+								value="{{ equip.status }}"
 							/>
 						</div>
-						<div class="form-group">
+						<!-- <div class="form-group">
 							<label for="equipStatus">Equipment Status</label>
 							<input
 								type="text"
@@ -73,7 +73,7 @@
 								class="form-control-lg col-sm-12"
 								value="Excellent/Good/Fair/Need Repair"
 							/>
-						</div>
+						</div> -->
 						<div class="form-group">
 							<label for="lastUsedBy">Last Used By</label>
 							<input
@@ -81,7 +81,7 @@
 								name="lastUsedBy"
 								id="lastUsedBy"
 								class="form-control-lg col-sm-12"
-								value="Last used by"
+								value="{{ equip.first_name }} {{ equip.last_Name }}"
 							/>
 						</div>
 						<div class="form-group">
@@ -91,10 +91,10 @@
 								name="lastUsedDate"
 								id="lastUsedDate"
 								class="form-control-lg col-sm-12"
-								value="Last used date"
+								value="{{ equip.lastCheckoutTime }}"
 							/>
 						</div>
-						<div class="form-group">
+						<!-- <div class="form-group">
 							<label for="action">Actions</label>
 							<input
 								type="text"
@@ -103,8 +103,35 @@
 								class="form-control-lg col-sm-12"
 								value="Active/Unactivte"
 							/>
-						</div>
+						</div> -->
 					</fieldset>
+				</div>
+				<div class="container">
+					<h1>Equipment Usage History</h1>
+					<table class="table table-striped">
+						<thead>
+							<tr>
+								<th scope="col">Checkout Name</th>
+								<th scope="col">Checkout Time</th>
+								<th scope="col">Checkout Condtion</th>
+								<th scope="col">Checkin Name</th>
+								<th scope="col">Checkin Time</th>
+								<th scope="col">Checkin Condtion</th>
+							</tr>
+						</thead>
+						<tbody>
+							{% for item in trans %}
+							<tr>
+								<td>{{ item.first_name }} {{ item.last_name }}</td>
+								<td>{{ item.checkout_time }}</td>
+								<td>{{ item.condition_out }}</td>
+								<td>{{ item.inFirstName }} {{ item.inLastName }}</td>
+								<td>{{ item.checkin_time }}</td>
+								<td>{{ item.condition_in }}</td>
+							</tr>
+							{% endfor %}
+						</tbody>
+					</table>
 				</div>
 			</main>
 		</div>
