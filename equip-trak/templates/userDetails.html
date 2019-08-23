@@ -87,7 +87,7 @@
 						</thead>
 						<tbody>
 							{% for item in trans %}
-							<tr>
+							<tr onclick="window.location='/transaction/{{ item.trans_id }}';">
 								<td>{{ item.equip_id }}</td>
 								<td>{{ item.manufacturer }} {{ item.model }}</td>
 								<td>{{ item.checkout_time }}</td>
