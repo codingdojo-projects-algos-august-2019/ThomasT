@@ -74,6 +74,30 @@
 						/>
 					</div>
 				</div>
+				<div class="container">
+					<h1>Equipment Usage History</h1>
+					<table class="table table-striped">
+						<thead>
+							<tr>
+								<th scope="col">Equipment ID</th>
+								<th scope="col">Manufacturer - Model</th>
+								<th scope="col">Checkout Time</th>
+								<th scope="col">Checkin Time</th>
+							</tr>
+						</thead>
+						<tbody>
+							{% for item in trans %}
+							<tr>
+								<td>{{ item.equip_id }}</td>
+								<td>{{ item.manufacturer }} {{ item.model }}</td>
+								<td>{{ item.checkout_time }}</td>
+								<td>{{ item.checkin_time }}</td>
+							</tr>
+
+							{% endfor %}
+						</tbody>
+					</table>
+				</div>
 			</main>
 		</div>
 	</body>

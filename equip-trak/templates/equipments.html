@@ -27,21 +27,23 @@
 						<tr>
 							<th scope="col">ID</th>
 							<th scope="col">Equipment ID</th>
-							<th scope="col">Manufacture / Model</th>
+							<th scope="col">Manufacturer / Model</th>
 							<th scope="col">Serial Number</th>
+							<th scope="col">Current Status</th>
 							<th scope="col">Last Used By</th>
 							<th scope="col">Last Time Used</th>
 						</tr>
 					</thead>
 					<tbody>
 						{% for item in equip %}
-						<tr onclick="window.location='/equipments/{{ item.id }}';">
-							<td scope="row">{{ item.id }}</td>
-							<td>{{ item.equip_id }}</td>
-							<td>{{ item.manufacture }} - {{ item.model }}</td>
+						<tr onclick="window.location='/equipments/{{ item.ID }}';">
+							<td scope="row">{{ item.ID }}</td>
+							<td>{{ item['Equipment ID'] }}</td>
+							<td>{{ item.manufacturer }} - {{ item.model }}</td>
 							<td>{{ item.serial }}</td>
-							<td>First/Last Name</td>
-							<td>Date last Used</td>
+							<td>{{ item.status }}</td>
+							<td>{{ item.first_name }} {{ item.last_Name }}</td>
+							<td>{{ item.lastCheckoutTime }}</td>
 						</tr>
 						{% endfor %}
 					</tbody>
