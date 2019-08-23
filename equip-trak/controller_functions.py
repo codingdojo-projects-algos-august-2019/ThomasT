@@ -242,3 +242,10 @@ def equipIn():
     # data = {'eId': request.form['equipId']}
     mySql.query_db(query, data)
     return redirect('/checkout')
+
+
+def logout():
+    print(session)
+    session.clear()
+    print(session)
+    return redirect('/')

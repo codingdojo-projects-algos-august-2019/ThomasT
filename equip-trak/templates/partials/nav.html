@@ -1,17 +1,17 @@
 {% if session['login'] == true %}
-<div class="container-fluid">
-	<div class="navbar-header">
+<div class="container-fluid d-flex">
+	<div class="navbar-header mr-auto">
 		<a class="navbar-brand" href="#">EquipTrak</a>
 	</div>
-	<ul class="nav navbar-nav">
-		<li class=""><a href="/">Home</a></li>
-		<!-- <li><a href="/">Login</a></li> -->
-		<!-- <li><a href="/register">Create User</a></li> -->
+	<ul class="nav navbar-nav mr-auto">
+		<li><a href="/">Home</a></li>
 		<li><a href="/checkout">Checkout</a></li>
 		<li><a href="/users">Users</a></li>
 		<li><a href="/equipments">Equipments</a></li>
 		<li><a href="/equipments/new">Add New Equipment</a></li>
-		<li><a href="/logout">Add New Equipment</a></li>
+	</ul>
+	<ul class="nav navbar-nav ml-auto">
+		<li><a href="/logout">Logout</a></li>
 	</ul>
 </div>
 {% else %}
@@ -19,9 +19,8 @@
 	<div class="navbar-header">
 		<a class="navbar-brand" href="#">EquipTrak</a>
 	</div>
-	<ul class="nav navbar-nav">
-		<li class="active"><a href="#">Home</a></li>
-		<li><a href="/">Login</a></li>
+	<ul class="nav navbar-nav col-sm-10">
+		<li><a href="/">Home</a></li>
 		<li><a href="/register">Create User</a></li>
 	</ul>
 </div>
