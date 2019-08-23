@@ -20,8 +20,89 @@
 	<body>
 		<div class="container">
 			<nav class="navbar navbar-inverse"></nav>
-			<main>
+			<main class="d-flex flex-column">
 				<h1>Transaction Details</h1>
+
+				<div class="container col-sm-6">
+					<h2>Equipment</h2>
+					<fieldset disabled="disabled">
+						<div class="form-group">
+							<label for="equipId">Equipment ID</label>
+							<input
+								type="text"
+								name="equipId"
+								id="equipId"
+								class="form-control-lg col-sm-12"
+								value="{{ trans['Equipment ID'] }}"
+							/>
+						</div>
+
+						<div class="form-group">
+							<label for="manuModel">Manufacture - Model</label>
+							<input
+								type="text"
+								name="manuModel"
+								id="manuModel"
+								class="form-control-lg col-sm-12"
+								value="{{ trans.manufacturer }} - {{ trans.model }}"
+							/>
+						</div>
+						<div class="form-group">
+							<label for="serial">Serial</label>
+							<input
+								type="text"
+								name="serial"
+								id="serial"
+								class="form-control-lg col-sm-12"
+								value="{{ trans.serial }}"
+							/>
+						</div>
+						<div class="form-group">
+							<label for="inOutStatus">Equipment Status</label>
+							<input
+								type="text"
+								name="inOutStatus"
+								id="inOutStatus"
+								class="form-control-lg col-sm-12"
+								value="{{ trans.status }}"
+							/>
+						</div>
+					</fieldset>
+				</div>
+				<div class="d-block container col-sm-9">
+					<h2>Checkout Details</h2>
+					<table class="table table-striped table-dark col-sm-6">
+						<thead>
+							<tr>
+								<th scope="col"></th>
+								<th scope="col">Checkout</th>
+								<th scope="col">Checkin</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<th scope="row">Name</th>
+								<td>{{ trans.out_first_name }} {{ trans.out_last_name }}</td>
+								<td>{{ trans.in_first_name }} {{ trans.in_last_name }}</td>
+							</tr>
+							<tr>
+								<th scope="row">Condition</th>
+								<td>{{ trans.out_condition }}</td>
+								<td>{{ trans.in_condition }}</td>
+							</tr>
+							<tr>
+								<th scope="row">Time</th>
+								<td>{{ trans.checkout_time }}</td>
+								<td>{{ trans.checkin_time }}</td>
+							</tr>
+							<tr>
+								<th scope="row">Comment</th>
+								<td>{{ trans.checkout_comment }}</td>
+								<td>{{ trans.checkin_comment }}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
 			</main>
 		</div>
 	</body>
