@@ -1,11 +1,7 @@
 from flask import Flask, render_template, redirect, request, flash, session
-from config import app
-from mysqlconnection import MySQLConnection
-from validate_email import validate_email
-from flask_bcrypt import Bcrypt
+from config import app, MySQLConnection, validate_email, bcrypt
 
 app.secret_key = 'shhdonttellanyone'
-bcrypt = Bcrypt(app)
 
 
 def root():
